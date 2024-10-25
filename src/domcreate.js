@@ -16,6 +16,10 @@ function taskCreateForm() {
   const formTask = document.createElement("form");
   formDiv.appendChild(formTask);
 
+  const formHeading = document.createElement("h2");
+  formHeading.textContent = "Create task";
+  formTask.appendChild(formHeading);
+
   const inputName = document.createElement("input");
   inputName.setAttribute("id", "inputName");
   formTask.appendChild(inputName);
@@ -25,10 +29,28 @@ function taskCreateForm() {
   formTask.appendChild(inputText);
 
   const inputDate = document.createElement("input");
+  inputDate.setAttribute("type", "date");
   inputDate.setAttribute("id", "inputDate");
   formTask.appendChild(inputDate);
 
-  const inputPriority = document.createElement("input");
-  inputPriority.setAttribute("id", "inputPriority");
-  formTask.appendChild(inputPriority);
+  const prioritySet = document.createElement("fieldset");
+  formTask.appendChild(prioritySet);
+
+  for (let i = 1; i < 4; i++) {
+    const priority = document.createElement("input");
+    priority.setAttribute("id", "priority" + i);
+    priority.setAttribute("name", "priority" + i);
+    priority.setAttribute("type", "radio");
+    priority.setAttribute("value", i);
+    prioritySet.appendChild(priority);
+
+    const priorityLabel = document.createElement("label");
+    priorityLabel.setAttribute("for", "priority" + i);
+    priorityLabel.setAttribute("id", "prioLabel" + i);
+    prioritySet.appendChild(priorityLabel);
+  }
+
+  document.getElementById("prioLabel1").textContent = "Low";
+  document.getElementById("prioLabel2").textContent = "Medium";
+  document.getElementById("prioLabel3").textContent = "High";
 }
