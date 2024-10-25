@@ -157,3 +157,12 @@ fieldset {
   display: flex;
   justify-content: center;
 }
+
+form button {
+  font-size: 20px;
+  width: auto;
+  align-self: center;
+  border-radius: 3px;
+  border-style: none;
+  padding: 10px 20px;
+}

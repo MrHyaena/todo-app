@@ -50,6 +50,11 @@ function taskCreateForm() {
     prioritySet.appendChild(priorityLabel);
   }
 
+  const buttonSend = document.createElement("button");
+  buttonSend.textContent = "Add Task";
+  buttonSend.setAttribute("id", "buttonSend");
+  formTask.appendChild(buttonSend);
+
   document.getElementById("prioLabel1").textContent = "Low";
   document.getElementById("prioLabel2").textContent = "Medium";
   document.getElementById("prioLabel3").textContent = "High";
