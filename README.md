@@ -1,5 +1,4 @@
-# template
+# todo-app
 
-<h1>This a template repository</h1>
+<h1>TODO-App project pro The Odin Project</h1>
 
-<h2>Parts</h2>
