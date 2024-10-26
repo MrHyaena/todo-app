@@ -5,4 +5,3 @@ import { projectForm } from "./domSidebar";
 import { showAllProjects } from "./domSidebar";
 
 myProjects.map(showAllProjects);
-console.log(myProjects);

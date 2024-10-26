@@ -1,5 +1,3 @@
-import { myProjects } from "./project";
-
 export let projectButton = document
   .getElementById("btnCreateProject")
   .addEventListener("click", projectForm);
@@ -35,4 +33,8 @@ export function showAllProjects(eachProject) {
   const projectName = document.createElement("h4");
   projectName.textContent = eachProject.name;
   projectDiv.appendChild(projectName);
+
+  const btnProjectDelete = document.createElement("button");
+  btnProjectDelete.textContent = "Delete";
+  projectDiv.appendChild(btnProjectDelete);
 }
