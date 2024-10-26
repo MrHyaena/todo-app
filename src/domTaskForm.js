@@ -1,9 +1,8 @@
 const btnCreateProject = document.querySelector("#btnCreateProject");
 
-export let btnSidebar = btnCreateProject.addEventListener(
-  "click",
-  taskCreateForm
-);
+export let btnSidebar = document
+  .getElementById("")
+  .addEventListener("click", taskCreateForm);
 
 function taskCreateForm() {
   const board = document.querySelector("#board");
@@ -53,6 +52,7 @@ function taskCreateForm() {
   const buttonSend = document.createElement("button");
   buttonSend.textContent = "Add Task";
   buttonSend.setAttribute("id", "buttonSend");
+  buttonSend.setAttribute("type", "button");
   formTask.appendChild(buttonSend);
 
   document.getElementById("prioLabel1").textContent = "Low";

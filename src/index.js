@@ -1,7 +1,8 @@
 import "./styles.css";
-import { btnSidebar } from "./domTaskForm";
 import { myProjects } from "./project";
+import { projectButton } from "./domSidebar";
+import { projectForm } from "./domSidebar";
+import { showAllProjects } from "./domSidebar";
 
-btnSidebar;
-
+myProjects.map(showAllProjects);
 console.log(myProjects);
