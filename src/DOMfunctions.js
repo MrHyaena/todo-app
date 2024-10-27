@@ -4,41 +4,43 @@ import { addProjectArray } from "./project";
 
 // Form for adding tasks //
 
-function taskCreateForm() {
-  const board = document.querySelector("#board");
-  board.innerHTML = "";
+document.getElementById("addTask").addEventListener("click", taskCreateForm);
 
-  const formDiv = document.createElement("div");
-  formDiv.setAttribute("id", "formDiv");
-  board.appendChild(formDiv);
+function taskCreateForm() {
+  const addConsole = document.querySelector("#addConsole");
+
+  const formDiv = document.querySelector("#formDiv");
+  formDiv.innerHTML = "";
 
   const formTask = document.createElement("form");
   formDiv.appendChild(formTask);
 
-  const formHeading = document.createElement("h2");
-  formHeading.textContent = "Create task";
-  formTask.appendChild(formHeading);
-
   const inputName = document.createElement("input");
   inputName.setAttribute("id", "inputName");
+  inputName.setAttribute("placeholder", "Task name");
   formTask.appendChild(inputName);
-
-  const inputText = document.createElement("textarea");
-  inputText.setAttribute("id", "inputText");
-  formTask.appendChild(inputText);
 
   const inputDate = document.createElement("input");
   inputDate.setAttribute("type", "date");
   inputDate.setAttribute("id", "inputDate");
   formTask.appendChild(inputDate);
 
+  const inputText = document.createElement("textarea");
+  inputText.setAttribute("id", "inputText");
+  inputText.setAttribute("placeholder", "Description");
+  formTask.appendChild(inputText);
+
   const prioritySet = document.createElement("fieldset");
   formTask.appendChild(prioritySet);
+
+  const legendRdaio = document.createElement("legend");
+  legendRdaio.textContent = "Priority";
+  prioritySet.appendChild(legendRdaio);
 
   for (let i = 1; i < 4; i++) {
     const priority = document.createElement("input");
     priority.setAttribute("id", "priority" + i);
-    priority.setAttribute("name", "priority" + i);
+    priority.setAttribute("name", "priority");
     priority.setAttribute("type", "radio");
     priority.setAttribute("value", i);
     prioritySet.appendChild(priority);
@@ -58,6 +60,10 @@ function taskCreateForm() {
   document.getElementById("prioLabel1").textContent = "Low";
   document.getElementById("prioLabel2").textContent = "Medium";
   document.getElementById("prioLabel3").textContent = "High";
+
+  buttonSend.addEventListener("click", () => {
+    formDiv.innerHTML = "";
+  });
 }
 
 // DOM creation of sidebar elements //

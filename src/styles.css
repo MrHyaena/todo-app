@@ -2,7 +2,7 @@ body {
   margin: 0px;
   display: grid;
   grid-template-columns: 200px 1fr;
-  grid-template-rows: 80px 1fr;
+  grid-template-rows: 80px 80px 1fr;
   --first-color: rgb(45, 59, 103);
   --second-color: rgb(79, 109, 178);
   --background-grey: rgb(249, 249, 249);
@@ -52,7 +52,7 @@ header {
 
 #projectBar {
   grid-column: 1 / 2;
-  grid-row: 2 / 3;
+  grid-row: 2 / 4;
   background-color: white;
   min-height: calc(100vh - 100px);
   z-index: 1;
@@ -80,89 +80,89 @@ header {
 
 /* Board with all the tasks */
 
-#board {
+#addConsole {
   grid-column: 2 / 3;
   grid-row: 2 / 3;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding-left: 40px;
+}
+
+#addTask {
+  width: 40px;
+  height: 40px;
+  font-size: 30px;
+  background: linear-gradient(
+    10deg,
+    var(--first-color) 35%,
+    var(--second-color) 100%
+  );
+  box-shadow: 0px 0px 5px black;
+  border-style: none;
+  font-weight: bold;
+  color: var(--dark-blue);
+  color: white;
+}
+
+#board {
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
   background-color: var(--background-grey);
   height: auto;
   z-index: 0;
   padding: 50px;
-  justify-content: center;
-  display: flex;
 }
 
 /* Task and its elements */
 
 /* Form and its elements */
 
+#addConsole {
+  background-color: var(--background-grey);
+}
+
 #formDiv {
-  width: 50%;
+  padding: 10px 30px;
 }
 
 #formDiv form {
   display: flex;
-  flex-direction: column;
   gap: 20px;
-  background: radial-gradient(
-    circle at bottom,
+}
+
+textarea {
+  resize: none;
+}
+
+#inputName,
+#inputDate {
+  align-self: center;
+}
+
+#formDiv form button {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(
+    10deg,
     var(--first-color) 35%,
     var(--second-color) 100%
   );
-  padding: 50px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 3px black;
-}
-
-form h2 {
-  margin: 0px;
-  font-size: 30px;
-  text-align: center;
+  box-shadow: 0px 0px 5px black;
+  border-style: none;
+  font-weight: bold;
+  align-self: center;
   color: white;
 }
 
-#inputName {
-  grid-column: 1 / 3;
-  grid-row: 1 / 2;
-}
-
-#inputText {
-  grid-column: 2 / 3;
-  grid-row: 2 / 4;
-  resize: none;
-  height: 100px;
-}
-
-#inputDate {
-  grid-column: 1 / 2;
-  grid-row: 2 / 3;
-}
-
-#inputPriority {
-  grid-column: 1 / 2;
-  grid-row: 3 / 4;
-}
-
-input,
-textarea {
-  border-radius: 4px;
-  border-style: solid;
-  border-width: 1px;
+legend {
+  text-align: center;
 }
 
 fieldset {
-  color: white;
-  font-size: 20px;
-  text-align: center;
   border-style: none;
-  display: flex;
-  justify-content: center;
 }
 
-form button {
-  font-size: 20px;
-  width: auto;
-  align-self: center;
-  border-radius: 3px;
-  border-style: none;
-  padding: 10px 20px;
+textarea {
+  align-items: center;
 }

@@ -4,9 +4,9 @@ export class project {
   static counter = 0;
   constructor(projectName) {
     this.name = projectName;
-    this.tasksOne = [];
-    this.tasksTwo = [];
-    this.tasksThree = [];
+    this.taskHigh = [];
+    this.taskMedium = [];
+    this.taskLow = [];
     this.index = ++project.counter;
   }
 }
