@@ -1,21 +1,32 @@
 export const myProjects = [];
 
 export class project {
-  static numberForIndex = 0;
+  static counter = 0;
   constructor(projectName) {
     this.name = projectName;
-    this.tasks = [];
-    this.projectIndex = "";
+    this.tasksOne = [];
+    this.tasksTwo = [];
+    this.tasksThree = [];
+    this.index = ++project.counter;
   }
 }
 
-myProjects.splice(0, 0, new project("my first project"));
-myProjects.splice(0, 0, new project("my second project"));
-myProjects.splice(0, 0, new project("my third project"));
+export class task {
+  constructor(taskName, taskText, taskDate, taskPriority) {
+    this.name = taskName;
+    this.text = taskText;
+    this.date = taskDate;
+    this.priority = taskPriority;
+  }
+}
+
+myProjects.splice(myProjects.length, 0, new project("my first project", 1));
+myProjects.splice(myProjects.length, 0, new project("my second project", 2));
+myProjects.splice(myProjects.length, 0, new project("my third project", 3));
 
 export function addProjectArray() {
   myProjects.splice(
-    0,
+    myProjects.length,
     0,
     new project(document.getElementById("projectNameInput").value)
   );

@@ -1,5 +1,5 @@
 import { myProjects } from "./project";
-import { project } from "./project";
+
 import { addProjectArray } from "./project";
 
 // Form for adding tasks //
@@ -118,10 +118,18 @@ export function showAllProjects() {
     btnProjectDelete.textContent = "Delete";
     projectDiv.appendChild(btnProjectDelete);
 
+    const btnProjectShow = document.createElement("button");
+    btnProjectShow.textContent = "Open";
+    projectDiv.appendChild(btnProjectShow);
+
     btnProjectDelete.addEventListener("click", () => {
       myProjects.splice(myProjects.indexOf(eachProject), 1);
       projectsDiv.removeChild(projectDiv);
       console.log(myProjects);
+    });
+
+    btnProjectShow.addEventListener("click", () => {
+      const board = document.querySelector("board");
     });
   }
 }
