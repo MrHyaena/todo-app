@@ -1,5 +1,6 @@
 import { myProjects } from "./project";
 import { project } from "./project";
+import { addProjectArray } from "./project";
 
 // Form for adding tasks //
 
@@ -90,27 +91,37 @@ export function projectForm() {
   formProject.appendChild(buttonNewProject);
 
   buttonNewProject.addEventListener("click", () => {
-    myProjects.splice(0, 0, new project(projectNameInput.value));
+    addProjectArray();
     projectBar.innerHTML = "";
 
     console.log(myProjects);
 
-    myProjects.map(showAllProjects);
+    showAllProjects();
   });
 }
 
-function showAllProjects(eachProject) {
-  const projectsDiv = document.getElementById("projects");
-  projectsDiv.innerHTML = "";
+export function showAllProjects() {
+  document.getElementById("projects").innerHTML = "";
+  myProjects.map(domCreateProjects);
 
-  const projectDiv = document.createElement("div");
-  projectsDiv.appendChild(projectDiv);
+  function domCreateProjects(eachProject) {
+    const projectsDiv = document.getElementById("projects");
 
-  const projectName = document.createElement("h4");
-  projectName.textContent = eachProject.name;
-  projectDiv.appendChild(projectName);
+    const projectDiv = document.createElement("div");
+    projectsDiv.appendChild(projectDiv);
 
-  const btnProjectDelete = document.createElement("button");
-  btnProjectDelete.textContent = "Delete";
-  projectDiv.appendChild(btnProjectDelete);
+    const projectName = document.createElement("h4");
+    projectName.textContent = eachProject.name;
+    projectDiv.appendChild(projectName);
+
+    const btnProjectDelete = document.createElement("button");
+    btnProjectDelete.textContent = "Delete";
+    projectDiv.appendChild(btnProjectDelete);
+
+    btnProjectDelete.addEventListener("click", () => {
+      myProjects.splice(myProjects.indexOf(eachProject), 1);
+      projectsDiv.removeChild(projectDiv);
+      console.log(myProjects);
+    });
+  }
 }
