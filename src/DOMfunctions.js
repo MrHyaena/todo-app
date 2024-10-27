@@ -8,9 +8,7 @@ import { projectIndex } from "./project";
 
 document.getElementById("addTask").addEventListener("click", taskCreateForm);
 
-function taskCreateForm() {
-  const addConsole = document.querySelector("#addConsole");
-
+export function taskCreateForm() {
   const formDiv = document.querySelector("#formDiv");
   formDiv.innerHTML = "";
 
@@ -142,6 +140,8 @@ export function showAllProjects() {
       console.log(projectIndex);
 
       eachProject.taskHigh.map(showHighPriority);
+      eachProject.taskMedium.map(showMediumPriority);
+      eachProject.taskLow.map(showLowPriority);
     });
 
     function showHighPriority(task) {
@@ -150,6 +150,22 @@ export function showAllProjects() {
       taskName.textContent = task.name;
 
       highPriority.appendChild(taskName);
+    }
+
+    function showMediumPriority(task) {
+      const mediumPriority = document.querySelector("#mediumPriority");
+      const taskName = document.createElement("h3");
+      taskName.textContent = task.name;
+
+      mediumPriority.appendChild(taskName);
+    }
+
+    function showLowPriority(task) {
+      const lowPriority = document.querySelector("#lowPriority");
+      const taskName = document.createElement("h3");
+      taskName.textContent = task.name;
+
+      lowPriority.appendChild(taskName);
     }
   }
 }
