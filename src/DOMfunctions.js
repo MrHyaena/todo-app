@@ -1,8 +1,7 @@
-const btnCreateProject = document.querySelector("#btnCreateProject");
+import { myProjects } from "./project";
+import { project } from "./project";
 
-export let btnSidebar = document
-  .getElementById("")
-  .addEventListener("click", taskCreateForm);
+// Form for adding tasks //
 
 function taskCreateForm() {
   const board = document.querySelector("#board");
@@ -58,4 +57,60 @@ function taskCreateForm() {
   document.getElementById("prioLabel1").textContent = "Low";
   document.getElementById("prioLabel2").textContent = "Medium";
   document.getElementById("prioLabel3").textContent = "High";
+}
+
+// DOM creation of sidebar elements //
+
+// Button - create new projects //
+
+document
+  .getElementById("btnCreateProject")
+  .addEventListener("click", projectForm);
+
+export function projectForm() {
+  const projectBar = document.getElementById("projectsFormDiv");
+  projectBar.innerHTML = "";
+
+  const formProject = document.createElement("form");
+  formProject.setAttribute("id", "formProject");
+  projectBar.appendChild(formProject);
+
+  const formProjectHeading = document.createElement("h3");
+  formProjectHeading.textContent = "Create project";
+  formProject.appendChild(formProjectHeading);
+
+  const projectNameInput = document.createElement("input");
+  projectNameInput.setAttribute("id", "projectNameInput");
+  formProject.appendChild(projectNameInput);
+
+  const buttonNewProject = document.createElement("button");
+  buttonNewProject.textContent = "Create";
+  buttonNewProject.setAttribute("id", "buttonNewProject");
+  buttonNewProject.setAttribute("type", "button");
+  formProject.appendChild(buttonNewProject);
+
+  buttonNewProject.addEventListener("click", () => {
+    myProjects.splice(0, 0, new project(projectNameInput.value));
+    projectBar.innerHTML = "";
+
+    console.log(myProjects);
+
+    myProjects.map(showAllProjects);
+  });
+}
+
+function showAllProjects(eachProject) {
+  const projectsDiv = document.getElementById("projects");
+  projectsDiv.innerHTML = "";
+
+  const projectDiv = document.createElement("div");
+  projectsDiv.appendChild(projectDiv);
+
+  const projectName = document.createElement("h4");
+  projectName.textContent = eachProject.name;
+  projectDiv.appendChild(projectName);
+
+  const btnProjectDelete = document.createElement("button");
+  btnProjectDelete.textContent = "Delete";
+  projectDiv.appendChild(btnProjectDelete);
 }
