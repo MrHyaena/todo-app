@@ -41,3 +41,19 @@ export function addProjectArray() {
     new project(document.getElementById("projectNameInput").value)
   );
 }
+
+function addTaskToProject() {
+  const concreteProject = myProjects[projectIndex];
+
+  const taskNameInput = document.getElementById("inputName").value;
+  const taskDateInput = document.getElementById("inputDate").value;
+  const taskTextInput = document.getElementById("inputText").value;
+  const taskPriority = document.getElementsByName("priority").value;
+
+  const taskForAdding = new task(
+    taskNameInput,
+    taskTextInput,
+    taskDateInput,
+    taskPriority
+  );
+}
