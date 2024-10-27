@@ -1,6 +1,8 @@
-import { myProjects } from "./project";
+import { myProjects, task } from "./project";
 
 import { addProjectArray } from "./project";
+
+import { projectIndex } from "./project";
 
 // Form for adding tasks //
 
@@ -135,7 +137,19 @@ export function showAllProjects() {
     });
 
     btnProjectShow.addEventListener("click", () => {
-      const board = document.querySelector("board");
+      projectIndex.splice(0, 1, myProjects.indexOf(eachProject));
+
+      console.log(projectIndex);
+
+      eachProject.taskHigh.map(showHighPriority);
     });
+
+    function showHighPriority(task) {
+      const highPriority = document.querySelector("#highPriority");
+      const taskName = document.createElement("h3");
+      taskName.textContent = task.name;
+
+      highPriority.appendChild(taskName);
+    }
   }
 }
