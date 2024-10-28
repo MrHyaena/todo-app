@@ -4,6 +4,8 @@ import { addProjectArray } from "./project";
 
 import { projectIndex } from "./project";
 
+import { addTaskToProject } from "./project";
+
 // Form for adding tasks //
 
 document.getElementById("addTask").addEventListener("click", taskCreateForm);
@@ -62,7 +64,12 @@ export function taskCreateForm() {
   document.getElementById("prioLabel3").textContent = "High";
 
   buttonSend.addEventListener("click", () => {
+    addTaskToProject();
     formDiv.innerHTML = "";
+    clearTaskBoard();
+    myProjects[projectIndex].taskHigh.map(showHighPriority);
+    myProjects[projectIndex].taskMedium.map(showMediumPriority);
+    myProjects[projectIndex].taskLow.map(showLowPriority);
   });
 }
 
@@ -131,6 +138,7 @@ export function showAllProjects() {
     btnProjectDelete.addEventListener("click", () => {
       myProjects.splice(myProjects.indexOf(eachProject), 1);
       projectsDiv.removeChild(projectDiv);
+      clearTaskBoard();
       console.log(myProjects);
     });
 
@@ -138,34 +146,41 @@ export function showAllProjects() {
       projectIndex.splice(0, 1, myProjects.indexOf(eachProject));
 
       console.log(projectIndex);
-
+      clearTaskBoard();
       eachProject.taskHigh.map(showHighPriority);
       eachProject.taskMedium.map(showMediumPriority);
       eachProject.taskLow.map(showLowPriority);
     });
-
-    function showHighPriority(task) {
-      const highPriority = document.querySelector("#highPriority");
-      const taskName = document.createElement("h3");
-      taskName.textContent = task.name;
-
-      highPriority.appendChild(taskName);
-    }
-
-    function showMediumPriority(task) {
-      const mediumPriority = document.querySelector("#mediumPriority");
-      const taskName = document.createElement("h3");
-      taskName.textContent = task.name;
-
-      mediumPriority.appendChild(taskName);
-    }
-
-    function showLowPriority(task) {
-      const lowPriority = document.querySelector("#lowPriority");
-      const taskName = document.createElement("h3");
-      taskName.textContent = task.name;
-
-      lowPriority.appendChild(taskName);
-    }
   }
+}
+
+function showHighPriority(task) {
+  const highPriority = document.querySelector("#highPriority");
+
+  const taskName = document.createElement("h3");
+  taskName.textContent = task.name;
+
+  highPriority.appendChild(taskName);
+}
+
+function showMediumPriority(task) {
+  const mediumPriority = document.querySelector("#mediumPriority");
+  const taskName = document.createElement("h3");
+  taskName.textContent = task.name;
+
+  mediumPriority.appendChild(taskName);
+}
+
+function showLowPriority(task) {
+  const lowPriority = document.querySelector("#lowPriority");
+  const taskName = document.createElement("h3");
+  taskName.textContent = task.name;
+
+  lowPriority.appendChild(taskName);
+}
+
+function clearTaskBoard() {
+  document.getElementById("highPriority").innerHTML = "";
+  document.getElementById("mediumPriority").innerHTML = "";
+  document.getElementById("lowPriority").innerHTML = "";
 }

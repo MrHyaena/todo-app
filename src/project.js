@@ -3,18 +3,17 @@ export const projectIndex = [0];
 
 export class project {
   static counter = 0;
-  static index = 0;
   constructor(projectName) {
     this.name = projectName;
     this.taskHigh = [];
     this.taskMedium = [];
     this.taskLow = [];
-    this.index = ++project.counter;
+    this.index = 0;
   }
 }
 
 export class task {
-  constructor(taskName, taskText, taskDate, taskPriority) {
+  constructor(taskName, taskDate, taskText, taskPriority) {
     this.name = taskName;
     this.text = taskText;
     this.date = taskDate;
@@ -34,6 +33,9 @@ project1.taskHigh.splice(
   new task("my task", "blablabla")
 );
 
+console.log(myProjects);
+console.log(projectIndex);
+
 export function addProjectArray() {
   myProjects.splice(
     myProjects.length,
@@ -42,18 +44,18 @@ export function addProjectArray() {
   );
 }
 
-function addTaskToProject() {
-  const concreteProject = myProjects[projectIndex];
-
-  const taskNameInput = document.getElementById("inputName").value;
-  const taskDateInput = document.getElementById("inputDate").value;
-  const taskTextInput = document.getElementById("inputText").value;
-  const taskPriority = document.getElementsByName("priority").value;
-
-  const taskForAdding = new task(
-    taskNameInput,
-    taskTextInput,
-    taskDateInput,
-    taskPriority
+export function addTaskToProject() {
+  myProjects[projectIndex].taskHigh.splice(
+    0,
+    0,
+    new task(
+      document.getElementById("inputName").value,
+      document.getElementById("inputDate").value,
+      document.getElementById("inputText").value,
+      document.getElementsByName("priority").value
+    )
   );
+
+  console.log(myProjects);
+  console.log(myProjects[projectIndex]);
 }

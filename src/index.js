@@ -4,4 +4,3 @@ import { projectForm } from "./DOMfunctions";
 import { myProjects } from "./project";
 
 myProjects.map(showAllProjects);
-console.log(myProjects);
