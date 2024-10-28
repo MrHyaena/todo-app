@@ -21,21 +21,6 @@ export class task {
   }
 }
 
-let project1 = new project("my first project", 1);
-
-myProjects.splice(myProjects.length, 0, project1);
-myProjects.splice(myProjects.length, 0, new project("my second project", 2));
-myProjects.splice(myProjects.length, 0, new project("my third project", 3));
-
-project1.taskHigh.splice(
-  project1.taskHigh.length,
-  0,
-  new task("my task", "blablabla")
-);
-
-console.log(myProjects);
-console.log(projectIndex);
-
 export function addProjectArray() {
   myProjects.splice(
     myProjects.length,
@@ -52,10 +37,34 @@ export function addTaskToProject() {
       document.getElementById("inputName").value,
       document.getElementById("inputDate").value,
       document.getElementById("inputText").value,
-      document.getElementsByName("priority").value
+      document.querySelector("input[type='radio'][name=priority]:checked").value
     )
   );
 
   console.log(myProjects);
   console.log(myProjects[projectIndex]);
+  console.log(
+    document.querySelector("input[type='radio'][name=priority]:checked").value
+  );
 }
+
+// Test data
+
+let project1 = new project("my first project", 1);
+
+myProjects.splice(myProjects.length, 0, project1);
+myProjects.splice(myProjects.length, 0, new project("my second project", 2));
+myProjects.splice(myProjects.length, 0, new project("my third project", 3));
+
+project1.taskHigh.splice(
+  project1.taskHigh.length,
+  0,
+  new task("my task", "blablabla")
+);
+
+console.log(myProjects);
+console.log(projectIndex);
+
+// --------------------------------------------
+// --------------------------------------------
+// --------------------------------------------

@@ -154,29 +154,98 @@ export function showAllProjects() {
   }
 }
 
+// General functions for showing tasks and clearing them
+
 function showHighPriority(task) {
   const highPriority = document.querySelector("#highPriority");
 
+  const taskDiv = document.createElement("div");
+  highPriority.appendChild(taskDiv);
+
   const taskName = document.createElement("h3");
   taskName.textContent = task.name;
+  taskDiv.appendChild(taskName);
 
-  highPriority.appendChild(taskName);
+  const taskDate = document.createElement("h3");
+  taskDate.textContent = task.date;
+  taskDiv.appendChild(taskDate);
+
+  const taskButtonDiv = document.createElement("div");
+  taskButtonDiv.setAttribute("id", "taskButtonDiv");
+  taskDiv.appendChild(taskButtonDiv);
+
+  const btnDone = document.createElement("button");
+  btnDone.textContent = "Done";
+  taskButtonDiv.appendChild(btnDone);
+
+  const btnMore = document.createElement("button");
+  btnMore.textContent = "Details";
+  taskButtonDiv.appendChild(btnMore);
+
+  const detailsDiv = document.createElement("div");
+  taskDiv.appendChild(detailsDiv);
+
+  const taskText = document.createElement("p");
+  taskText.textContent = task.text;
+
+  let openclosed = 0;
+  btnMore.addEventListener("click", () => {
+    if (openclosed == 0) {
+      detailsDiv.appendChild(taskText);
+
+      openclosed = 1;
+    } else {
+      detailsDiv.innerHTML = "";
+
+      openclosed = 0;
+    }
+  });
 }
 
 function showMediumPriority(task) {
   const mediumPriority = document.querySelector("#mediumPriority");
+
+  const taskDiv = document.createElement("div");
+  mediumPriority.appendChild(taskDiv);
+
   const taskName = document.createElement("h3");
   taskName.textContent = task.name;
+  taskDiv.appendChild(taskName);
 
-  mediumPriority.appendChild(taskName);
+  const taskDate = document.createElement("h3");
+  taskDate.textContent = task.date;
+  taskDiv.appendChild(taskDate);
+
+  const taskText = document.createElement("h3");
+  taskText.textContent = task.text;
+  taskDiv.appendChild(tasktext);
+
+  const taskPriority = document.createElement("h3");
+  taskPriority.textContent = task.priority;
+  taskDiv.appendChild(taskPriority);
 }
 
 function showLowPriority(task) {
   const lowPriority = document.querySelector("#lowPriority");
+
+  const taskDiv = document.createElement("div");
+  lowPriority.appendChild(taskDiv);
+
   const taskName = document.createElement("h3");
   taskName.textContent = task.name;
+  taskDiv.appendChild(taskName);
 
-  lowPriority.appendChild(taskName);
+  const taskDate = document.createElement("h3");
+  taskDate.textContent = task.date;
+  taskDiv.appendChild(taskDate);
+
+  const taskText = document.createElement("h3");
+  taskText.textContent = task.text;
+  taskDiv.appendChild(tasktext);
+
+  const taskPriority = document.createElement("h3");
+  taskPriority.textContent = task.priority;
+  taskDiv.appendChild(taskPriority);
 }
 
 function clearTaskBoard() {

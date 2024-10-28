@@ -60,6 +60,7 @@ header {
   display: flex;
   flex-direction: column;
   padding: 20px;
+  gap: 20px;
 }
 
 #btnCreateProject {
@@ -68,6 +69,59 @@ header {
   padding: 20px 40px;
   background: linear-gradient(
     10deg,
+    var(--first-color) 35%,
+    var(--second-color) 100%
+  );
+  box-shadow: 0px 0px 5px black;
+  border-style: none;
+  font-weight: bold;
+  color: var(--dark-blue);
+  color: white;
+}
+
+#allTasks {
+  font-size: 15px;
+  border-radius: 5px;
+  padding: 10px 20px;
+  background: linear-gradient(
+    50deg,
+    var(--first-color) 35%,
+    var(--second-color) 100%
+  );
+  box-shadow: 0px 0px 5px black;
+  border-style: none;
+  font-weight: bold;
+  color: var(--dark-blue);
+  color: white;
+}
+
+#projects {
+  display: grid;
+  gap: 10px;
+}
+
+#projects div {
+  border-radius: 5px;
+  display: grid;
+  justify-content: center;
+  font-weight: bold;
+  gap: 5px;
+  padding: 5px;
+  border: 1px solid black;
+}
+
+#projects div h4 {
+  padding: 5px;
+  margin: 0px;
+  font-size: 15px;
+}
+
+#projects div button {
+  font-size: 12px;
+  border-radius: 5px;
+  padding: 8px 10px;
+  background: linear-gradient(
+    50deg,
     var(--first-color) 35%,
     var(--second-color) 100%
   );
@@ -112,6 +166,22 @@ header {
   height: auto;
   z-index: 0;
   padding: 50px;
+}
+
+#highPriority,
+#mediumPriority,
+#lowPriority {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+#highPriority div {
+  background-color: rgb(255, 212, 212);
+  display: flex;
+  border-radius: 10px;
+  padding: 5px 20px;
+  justify-content: space-between;
 }
 
 /* Task and its elements */
