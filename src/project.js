@@ -48,6 +48,8 @@ export function addTaskToProject() {
   );
 }
 
+function taskDone() {}
+
 // Test data
 
 let project1 = new project("my first project", 1);

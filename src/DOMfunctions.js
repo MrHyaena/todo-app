@@ -145,7 +145,6 @@ export function showAllProjects() {
     btnProjectShow.addEventListener("click", () => {
       projectIndex.splice(0, 1, myProjects.indexOf(eachProject));
 
-      console.log(projectIndex);
       clearTaskBoard();
       eachProject.taskHigh.map(showHighPriority);
       eachProject.taskMedium.map(showMediumPriority);
@@ -197,6 +196,16 @@ function showHighPriority(task) {
 
       openclosed = 0;
     }
+  });
+
+  btnDone.addEventListener("click", () => {
+    let taskIndex = myProjects.indexOf(task);
+    console.log(taskIndex);
+
+    clearTaskBoard();
+    eachProject.taskHigh.map(showHighPriority);
+    eachProject.taskMedium.map(showMediumPriority);
+    eachProject.taskLow.map(showLowPriority);
   });
 }
 
