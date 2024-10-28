@@ -182,20 +182,18 @@ function showHighPriority(task) {
   btnMore.textContent = "Details";
   taskButtonDiv.appendChild(btnMore);
 
-  const detailsDiv = document.createElement("div");
-  taskDiv.appendChild(detailsDiv);
-
   const taskText = document.createElement("p");
   taskText.textContent = task.text;
 
   let openclosed = 0;
+
   btnMore.addEventListener("click", () => {
     if (openclosed == 0) {
-      detailsDiv.appendChild(taskText);
+      taskDiv.appendChild(taskText);
 
       openclosed = 1;
     } else {
-      detailsDiv.innerHTML = "";
+      taskDiv.removeChild(taskText);
 
       openclosed = 0;
     }

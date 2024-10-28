@@ -59,7 +59,13 @@ myProjects.splice(myProjects.length, 0, new project("my third project", 3));
 project1.taskHigh.splice(
   project1.taskHigh.length,
   0,
-  new task("my task", "blablabla")
+  new task(
+    "my task",
+
+    "3.10.1999",
+    "iufehwi uhfaiuewh uhuhiu e whauf hfuewhfaiu fewafu hfurhaiufhruhf",
+    3
+  )
 );
 
 console.log(myProjects);
