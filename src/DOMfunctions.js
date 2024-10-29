@@ -1,4 +1,4 @@
-import { myProjects } from "./project";
+import { myProjects, project } from "./project";
 
 import { addProjectArray } from "./project";
 
@@ -18,20 +18,6 @@ import { taskLowDone } from "./project";
 
 document.getElementById("projectNameheader").textContent = "General";
 generalMap();
-
-function generalMap() {
-  document.getElementById("projectNameheader").textContent = "General";
-  clearTaskBoard();
-  myProjects.map(generalMapProjects);
-}
-
-function generalMapProjects(project) {
-  project.taskHigh.map(showHighPriority);
-  project.taskMedium.map(showMediumPriority);
-  project.taskLow.map(showLowPriority);
-}
-
-document.getElementById("allTasks").addEventListener("click", generalMap);
 
 // Form for adding tasks //
 
@@ -372,4 +358,161 @@ function clearTaskBoard() {
   document.getElementById("highPriority").innerHTML = "";
   document.getElementById("mediumPriority").innerHTML = "";
   document.getElementById("lowPriority").innerHTML = "";
+}
+
+// General board creation
+
+function generalMap() {
+  document.getElementById("projectNameheader").textContent = "General";
+  clearTaskBoard();
+  myProjects.map(generalMapProjects);
+}
+
+function generalMapProjects(projectGen) {
+  projectGen.taskHigh.map(showHighPriorityGen);
+  projectGen.taskMedium.map(showMediumPriorityGen);
+  projectGen.taskLow.map(showLowPriorityGen);
+}
+
+document.getElementById("allTasks").addEventListener("click", generalMap);
+
+function showHighPriorityGen(task) {
+  const highPriority = document.querySelector("#highPriority");
+
+  const taskDiv = document.createElement("div");
+  taskDiv.setAttribute("class", "taskDiv");
+  highPriority.appendChild(taskDiv);
+
+  const taskName = document.createElement("h3");
+  taskName.textContent = task.name;
+  taskDiv.appendChild(taskName);
+
+  const taskDate = document.createElement("h3");
+  taskDate.textContent = "Due date - " + task.date;
+  taskDiv.appendChild(taskDate);
+
+  const taskButtonDiv = document.createElement("div");
+  taskButtonDiv.setAttribute("class", "taskButtonDiv");
+  taskDiv.appendChild(taskButtonDiv);
+
+  const btnMore = document.createElement("button");
+  btnMore.setAttribute("class", "btnDetails");
+  btnMore.textContent = "Details";
+  taskButtonDiv.appendChild(btnMore);
+
+  const taskText = document.createElement("p");
+  taskText.textContent = task.text;
+
+  const taskTextLabel = document.createElement("h5");
+  taskTextLabel.textContent = "Details";
+
+  let openclosed = 0;
+
+  btnMore.addEventListener("click", () => {
+    if (openclosed == 0) {
+      taskDiv.appendChild(taskTextLabel);
+      taskDiv.appendChild(taskText);
+
+      openclosed = 1;
+    } else {
+      taskDiv.removeChild(taskTextLabel);
+      taskDiv.removeChild(taskText);
+
+      openclosed = 0;
+    }
+  });
+}
+
+function showMediumPriorityGen(task) {
+  const mediumPriority = document.querySelector("#mediumPriority");
+
+  const taskDiv = document.createElement("div");
+  taskDiv.setAttribute("class", "taskDiv");
+  mediumPriority.appendChild(taskDiv);
+
+  const taskName = document.createElement("h3");
+  taskName.textContent = task.name;
+  taskDiv.appendChild(taskName);
+
+  const taskDate = document.createElement("h3");
+  taskDate.textContent = "Due date - " + task.date;
+  taskDiv.appendChild(taskDate);
+
+  const taskButtonDiv = document.createElement("div");
+  taskButtonDiv.setAttribute("class", "taskButtonDiv");
+  taskDiv.appendChild(taskButtonDiv);
+
+  const btnMore = document.createElement("button");
+  btnMore.setAttribute("class", "btnDetails");
+  btnMore.textContent = "Details";
+  taskButtonDiv.appendChild(btnMore);
+
+  const taskText = document.createElement("p");
+  taskText.textContent = task.text;
+
+  const taskTextLabel = document.createElement("h5");
+  taskTextLabel.textContent = "Details";
+
+  let openclosed = 0;
+
+  btnMore.addEventListener("click", () => {
+    if (openclosed == 0) {
+      taskDiv.appendChild(taskTextLabel);
+      taskDiv.appendChild(taskText);
+
+      openclosed = 1;
+    } else {
+      taskDiv.removeChild(taskTextLabel);
+      taskDiv.removeChild(taskText);
+
+      openclosed = 0;
+    }
+  });
+}
+
+function showLowPriorityGen(task) {
+  const lowPriority = document.querySelector("#lowPriority");
+
+  const taskDiv = document.createElement("div");
+  taskDiv.setAttribute("class", "taskDiv");
+  lowPriority.appendChild(taskDiv);
+
+  const taskName = document.createElement("h3");
+  taskName.textContent = task.name;
+  taskDiv.appendChild(taskName);
+
+  const taskDate = document.createElement("h3");
+  taskDate.textContent = "Due date - " + task.date;
+  taskDiv.appendChild(taskDate);
+
+  const taskButtonDiv = document.createElement("div");
+  taskButtonDiv.setAttribute("class", "taskButtonDiv");
+  taskDiv.appendChild(taskButtonDiv);
+
+  const btnMore = document.createElement("button");
+  btnMore.setAttribute("class", "btnDetails");
+  btnMore.textContent = "Details";
+  taskButtonDiv.appendChild(btnMore);
+
+  const taskText = document.createElement("p");
+  taskText.textContent = task.text;
+
+  const taskTextLabel = document.createElement("h5");
+  taskTextLabel.textContent = "Details";
+
+  let openclosed = 0;
+
+  btnMore.addEventListener("click", () => {
+    if (openclosed == 0) {
+      taskDiv.appendChild(taskTextLabel);
+      taskDiv.appendChild(taskText);
+
+      openclosed = 1;
+    } else {
+      taskDiv.removeChild(taskTextLabel);
+      taskDiv.removeChild(taskText);
+
+      openclosed = 0;
+    }
+  });
 }
