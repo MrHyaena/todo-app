@@ -23,14 +23,17 @@ export class task {
 }
 
 export function addProjectArray() {
+  getState();
   myProjects.splice(
     myProjects.length,
     0,
     new project(document.getElementById("projectNameInput").value)
   );
+  setState();
 }
 
 export function addTaskToProject() {
+  getState();
   let priorityNumber = document.querySelector(
     "input[type='radio'][name=priority]:checked"
   ).value;
@@ -48,7 +51,6 @@ export function addTaskToProject() {
         ).value
       )
     );
-    console.log(myProjects[projectIndex].taskHigh);
   } else if (priorityNumber == 2) {
     myProjects[projectIndex].taskMedium.splice(
       0,
@@ -76,76 +78,105 @@ export function addTaskToProject() {
       )
     );
   }
+  setState();
   console.log(myProjects);
 }
 
 export function taskHighDone() {
+  getState();
   myProjects[projectIndex].taskHigh.splice(
     myProjects[projectIndex].taskHigh[taskIndex[0]],
     1
   );
+  setState();
 }
 
 export function taskMediumDone() {
+  getState();
   myProjects[projectIndex].taskMedium.splice(
     myProjects[projectIndex].taskHigh[taskIndex[0]],
     1
   );
+  setState();
 }
 
 export function taskLowDone() {
+  getState();
   myProjects[projectIndex].taskLow.splice(
     myProjects[projectIndex].taskHigh[taskIndex[0]],
     1
   );
+  setState();
 }
 // Test data
 
-let project1 = new project("my first project", 1);
+createTestData();
 
-myProjects.splice(myProjects.length, 0, project1);
-myProjects.splice(myProjects.length, 0, new project("my second project", 2));
-myProjects.splice(myProjects.length, 0, new project("my third project", 3));
+function createTestData() {
+  let project1 = new project("my first project", 1);
 
-project1.taskHigh.splice(
-  project1.taskHigh.length,
-  0,
-  new task(
-    "high",
+  myProjects.splice(myProjects.length, 0, project1);
+  myProjects.splice(myProjects.length, 0, new project("my second project", 2));
+  myProjects.splice(myProjects.length, 0, new project("my third project", 3));
 
-    "3.10.1999",
-    "iufehwi uhfaiuewh uhuhiu e whauf hfuewhfaiu fewafu hfurhaiufhruhf",
-    3
-  )
-);
+  project1.taskHigh.splice(
+    project1.taskHigh.length,
+    0,
+    new task(
+      "high",
 
-project1.taskMedium.splice(
-  project1.taskMedium.length,
-  0,
-  new task(
-    "medium",
+      "3.10.1999",
+      "iufehwi uhfaiuewh uhuhiu e whauf hfuewhfaiu fewafu hfurhaiufhruhf",
+      3
+    )
+  );
 
-    "3.10.1999",
-    "iufehwi uhfaiuewh uhuhiu e whauf hfuewhfaiu fewafu hfurhaiufhruhf",
-    3
-  )
-);
+  project1.taskMedium.splice(
+    project1.taskMedium.length,
+    0,
+    new task(
+      "medium",
 
-project1.taskLow.splice(
-  project1.taskLow.length,
-  0,
-  new task(
-    "low",
+      "3.10.1999",
+      "iufehwi uhfaiuewh uhuhiu e whauf hfuewhfaiu fewafu hfurhaiufhruhf",
+      3
+    )
+  );
 
-    "3.10.1999",
-    "iufehwi uhfaiuewh uhuhiu e whauf hfuewhfaiu fewafu hfurhaiufhruhf",
-    3
-  )
-);
+  project1.taskLow.splice(
+    project1.taskLow.length,
+    0,
+    new task(
+      "low",
 
-console.log(myProjects);
-console.log(projectIndex);
+      "3.10.1999",
+      "iufehwi uhfaiuewh uhuhiu e whauf hfuewhfaiu fewafu hfurhaiufhruhf",
+      3
+    )
+  );
+}
 
 // --------------------------------------------
 // --------------------------------------------
 // --------------------------------------------
+
+setState();
+getState();
+
+export function setState() {
+  localStorage.setItem("myProjectsStorage", JSON.stringify(myProjects));
+  localStorage.setItem("projectIndexStorage", JSON.stringify(projectIndex));
+  localStorage.setItem("taskIndexStorage", JSON.stringify(projectIndex));
+  console.log("set");
+  console.log(myProjects);
+}
+
+export function getState() {
+  myProjects.splice(0, myProjects.length);
+  JSON.parse(localStorage.getItem("myProjectsStorage")).map(reworkMyProjects);
+  function reworkMyProjects(projectGet) {
+    myProjects.splice(myProjects.length, 0, projectGet);
+  }
+  console.log("get");
+  console.log(myProjects);
+}

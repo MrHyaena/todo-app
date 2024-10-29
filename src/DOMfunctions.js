@@ -14,6 +14,10 @@ import { taskMediumDone } from "./project";
 
 import { taskLowDone } from "./project";
 
+import { getState } from "./project";
+
+import { setState } from "./project";
+
 // Header for projects, General Page
 
 document.getElementById("projectNameheader").textContent = "General";
@@ -21,7 +25,20 @@ generalMap();
 
 // Form for adding tasks //
 
-document.getElementById("addTask").addEventListener("click", taskCreateForm);
+document.getElementById("addTask").addEventListener("click", taskOrGen);
+
+function taskOrGen() {
+  if (projectIndex == -1) {
+    const formDiv = document.querySelector("#formDiv");
+    formDiv.innerHTML = "";
+
+    const textInstead = document.createElement("h3");
+    textInstead.textContent = "Pick or create Project first";
+    formDiv.appendChild(textInstead);
+  } else {
+    taskCreateForm();
+  }
+}
 
 export function taskCreateForm() {
   const formDiv = document.querySelector("#formDiv");
@@ -66,6 +83,8 @@ export function taskCreateForm() {
     prioritySet.appendChild(priorityLabel);
   }
 
+  document.getElementById("priority1").checked = true;
+
   const buttonSend = document.createElement("button");
   buttonSend.textContent = "Add Task";
   buttonSend.setAttribute("id", "buttonSend");
@@ -83,6 +102,7 @@ export function taskCreateForm() {
     myProjects[projectIndex].taskHigh.map(showHighPriority);
     myProjects[projectIndex].taskMedium.map(showMediumPriority);
     myProjects[projectIndex].taskLow.map(showLowPriority);
+    setState();
   });
 }
 
@@ -120,8 +140,6 @@ export function projectForm() {
     addProjectArray();
     projectBar.innerHTML = "";
 
-    console.log(myProjects);
-
     showAllProjects();
   });
 }
@@ -130,7 +148,7 @@ export function showAllProjects() {
   document.getElementById("projects").innerHTML = "";
   myProjects.map(domCreateProjects);
 
-  function domCreateProjects(eachProject) {
+  function domCreateProjects(eachProject, indexOfproject) {
     const projectsDiv = document.getElementById("projects");
 
     const projectDiv = document.createElement("div");
@@ -152,7 +170,6 @@ export function showAllProjects() {
       myProjects.splice(myProjects.indexOf(eachProject), 1);
       projectsDiv.removeChild(projectDiv);
       clearTaskBoard();
-      console.log(myProjects);
     });
 
     btnProjectShow.addEventListener("click", () => {
@@ -161,9 +178,13 @@ export function showAllProjects() {
       document.getElementById("projectNameheader").textContent =
         eachProject.name;
       clearTaskBoard();
-      eachProject.taskHigh.map(showHighPriority);
-      eachProject.taskMedium.map(showMediumPriority);
-      eachProject.taskLow.map(showLowPriority);
+      getState();
+      console.log(projectIndex);
+      console.log(myProjects);
+      console.log(eachProject);
+      myProjects[indexOfproject].taskHigh.map(showHighPriority);
+      myProjects[indexOfproject].taskMedium.map(showMediumPriority);
+      myProjects[indexOfproject].taskLow.map(showLowPriority);
     });
   }
 }
@@ -365,6 +386,7 @@ function clearTaskBoard() {
 function generalMap() {
   document.getElementById("projectNameheader").textContent = "General";
   clearTaskBoard();
+  projectIndex.splice(0, 1, -1);
   myProjects.map(generalMapProjects);
 }
 

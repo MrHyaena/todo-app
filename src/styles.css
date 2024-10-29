@@ -11,6 +11,12 @@ body {
   --medium-color: rgb(255, 243, 232);
   --low-color: rgb(255, 255, 227);
   --border-color: rgb(205, 205, 205);
+  font-family: monospace;
+}
+
+button,
+h1 {
+  font-family: monospace;
 }
 
 /* Header and its elements */
@@ -110,7 +116,8 @@ header {
   justify-content: center;
   font-weight: bold;
   gap: 5px;
-  padding: 5px;
+  padding: 10px 5px;
+  padding-bottom: 10px;
   box-shadow: 0px 0px 1px black;
 }
 
@@ -183,10 +190,10 @@ header {
   background-color: var(--background-grey);
   height: auto;
   z-index: 0;
-  padding: 40px;
-  gap: 20px;
+  padding: 0px 40px;
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
 #highPriority,
@@ -211,6 +218,7 @@ header {
   padding: 5px 20px;
   justify-content: space-between;
   border: 1px solid rgb(192, 192, 192);
+  margin: 5px 0px;
 }
 
 #highPriority div p {
@@ -263,6 +271,7 @@ header {
   padding: 5px 20px;
   justify-content: space-between;
   border: 1px solid rgb(192, 192, 192);
+  margin: 5px 0px;
 }
 
 #mediumPriority div p {
@@ -315,6 +324,7 @@ header {
   padding: 5px 20px;
   justify-content: space-between;
   border: 1px solid rgb(192, 192, 192);
+  margin: 5px 0px;
 }
 
 #lowPriority div p {
@@ -404,4 +414,44 @@ fieldset {
 
 textarea {
   align-items: center;
+}
+
+#formProject {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 20px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+#formProject h3 {
+  margin: 0px;
+}
+
+input {
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+#buttonNewProject {
+  padding: 10px 20px;
+  background: linear-gradient(
+    10deg,
+    var(--first-color) 35%,
+    var(--second-color) 100%
+  );
+  box-shadow: 0px 0px 5px black;
+  border-style: none;
+  font-weight: bold;
+  align-self: center;
+  color: white;
+  border-radius: 5px;
+}
+
+#board button {
+  font-weight: 600;
+  font-size: 12px;
+  color: rgb(73, 73, 73);
 }
