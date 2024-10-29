@@ -2,11 +2,15 @@ body {
   margin: 0px;
   display: grid;
   grid-template-columns: 200px 1fr;
-  grid-template-rows: 80px 80px 1fr;
+  grid-template-rows: 80px 80px 80px 1fr;
   --first-color: rgb(45, 59, 103);
   --second-color: rgb(79, 109, 178);
   --background-grey: rgb(249, 249, 249);
   --third-color: rgb(229, 255, 228);
+  --high-color: rgb(255, 232, 232);
+  --medium-color: rgb(255, 243, 232);
+  --low-color: rgb(255, 255, 227);
+  --border-color: rgb(205, 205, 205);
 }
 
 /* Header and its elements */
@@ -52,7 +56,7 @@ header {
 
 #projectBar {
   grid-column: 1 / 2;
-  grid-row: 2 / 4;
+  grid-row: 2 / 5;
   background-color: white;
   min-height: calc(100vh - 100px);
   z-index: 1;
@@ -107,19 +111,22 @@ header {
   font-weight: bold;
   gap: 5px;
   padding: 5px;
-  border: 1px solid black;
+  box-shadow: 0px 0px 1px black;
 }
 
 #projects div h4 {
   padding: 5px;
   margin: 0px;
   font-size: 15px;
+  text-align: center;
 }
 
 #projects div button {
   font-size: 12px;
   border-radius: 5px;
-  padding: 8px 10px;
+  height: 30px;
+  width: 100px;
+  justify-self: center;
   background: linear-gradient(
     50deg,
     var(--first-color) 35%,
@@ -130,6 +137,17 @@ header {
   font-weight: bold;
   color: var(--dark-blue);
   color: white;
+}
+
+/* Project header */
+
+#projectNameheader {
+  padding: 10px 40px;
+  margin: 0px;
+  display: flex;
+  align-items: center;
+  background-color: var(--background-grey);
+  text-decoration: underline;
 }
 
 /* Board with all the tasks */
@@ -161,11 +179,14 @@ header {
 
 #board {
   grid-column: 2 / 3;
-  grid-row: 3 / 4;
+  grid-row: 4 / 5;
   background-color: var(--background-grey);
   height: auto;
   z-index: 0;
-  padding: 50px;
+  padding: 40px;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 #highPriority,
@@ -178,19 +199,160 @@ header {
 
 /* Task and its elements */
 
-#highPriority div {
-  background-color: rgb(255, 212, 212);
+/* High Priority */
+
+#highPriority .taskDiv {
+  background-color: var(--high-color);
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 5fr 1fr 1fr;
   align-items: center;
   justify-content: center;
   border-radius: 10px;
   padding: 5px 20px;
   justify-content: space-between;
+  border: 1px solid rgb(192, 192, 192);
 }
 
 #highPriority div p {
   grid-column: 1 / 4;
+}
+
+#highPriority div .taskButtonDiv {
+  display: flex;
+  justify-content: end;
+  gap: 20px;
+  padding: 0px;
+  border-style: none;
+}
+
+#highPriority div h5 {
+  font-size: 18px;
+  margin: 0px;
+  grid-column: 1 / 4;
+  border-top: 1px solid rgb(144, 144, 144);
+  padding-top: 20px;
+}
+
+.taskButtonDiv button {
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--dark-blue);
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.btnDone {
+  background-color: rgb(227, 255, 227);
+  border: 1px solid var(--border-color);
+}
+
+.btnDetails {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid var(--border-color);
+}
+
+/* Medium Priority */
+
+#mediumPriority .taskDiv {
+  background-color: var(--medium-color);
+  display: grid;
+  grid-template-columns: 5fr 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 5px 20px;
+  justify-content: space-between;
+  border: 1px solid rgb(192, 192, 192);
+}
+
+#mediumPriority div p {
+  grid-column: 1 / 4;
+}
+
+#mediumPriority div .taskButtonDiv {
+  display: flex;
+  justify-content: end;
+  gap: 20px;
+  padding: 0px;
+  border-style: none;
+}
+
+#mediumPriority div h5 {
+  font-size: 18px;
+  margin: 0px;
+  grid-column: 1 / 4;
+  border-top: 1px solid rgb(144, 144, 144);
+  padding-top: 20px;
+}
+
+.taskButtonDiv button {
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--dark-blue);
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.btnDone {
+  background-color: rgb(227, 255, 227);
+  border: 1px solid var(--border-color);
+}
+
+.btnDetails {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid var(--border-color);
+}
+
+/* Low Priority */
+
+#lowPriority .taskDiv {
+  background-color: var(--low-color);
+  display: grid;
+  grid-template-columns: 5fr 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 5px 20px;
+  justify-content: space-between;
+  border: 1px solid rgb(192, 192, 192);
+}
+
+#lowPriority div p {
+  grid-column: 1 / 4;
+}
+
+#lowPriority div .taskButtonDiv {
+  display: flex;
+  justify-content: end;
+  gap: 20px;
+  padding: 0px;
+  border-style: none;
+}
+
+#lowPriority div h5 {
+  font-size: 18px;
+  margin: 0px;
+  grid-column: 1 / 4;
+  border-top: 1px solid rgb(144, 144, 144);
+  padding-top: 20px;
+}
+
+.taskButtonDiv button {
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--dark-blue);
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.btnDone {
+  background-color: rgb(227, 255, 227);
+  border: 1px solid var(--border-color);
+}
+
+.btnDetails {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid var(--border-color);
 }
 
 /* Form and its elements */

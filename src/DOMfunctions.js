@@ -1,10 +1,37 @@
-import { myProjects, task } from "./project";
+import { myProjects } from "./project";
 
 import { addProjectArray } from "./project";
 
 import { projectIndex } from "./project";
 
 import { addTaskToProject } from "./project";
+
+import { taskIndex } from "./project";
+
+import { taskHighDone } from "./project";
+
+import { taskMediumDone } from "./project";
+
+import { taskLowDone } from "./project";
+
+// Header for projects, General Page
+
+document.getElementById("projectNameheader").textContent = "General";
+generalMap();
+
+function generalMap() {
+  document.getElementById("projectNameheader").textContent = "General";
+  clearTaskBoard();
+  myProjects.map(generalMapProjects);
+}
+
+function generalMapProjects(project) {
+  project.taskHigh.map(showHighPriority);
+  project.taskMedium.map(showMediumPriority);
+  project.taskLow.map(showLowPriority);
+}
+
+document.getElementById("allTasks").addEventListener("click", generalMap);
 
 // Form for adding tasks //
 
@@ -145,6 +172,8 @@ export function showAllProjects() {
     btnProjectShow.addEventListener("click", () => {
       projectIndex.splice(0, 1, myProjects.indexOf(eachProject));
 
+      document.getElementById("projectNameheader").textContent =
+        eachProject.name;
       clearTaskBoard();
       eachProject.taskHigh.map(showHighPriority);
       eachProject.taskMedium.map(showMediumPriority);
@@ -159,6 +188,7 @@ function showHighPriority(task) {
   const highPriority = document.querySelector("#highPriority");
 
   const taskDiv = document.createElement("div");
+  taskDiv.setAttribute("class", "taskDiv");
   highPriority.appendChild(taskDiv);
 
   const taskName = document.createElement("h3");
@@ -166,32 +196,39 @@ function showHighPriority(task) {
   taskDiv.appendChild(taskName);
 
   const taskDate = document.createElement("h3");
-  taskDate.textContent = task.date;
+  taskDate.textContent = "Due date - " + task.date;
   taskDiv.appendChild(taskDate);
 
   const taskButtonDiv = document.createElement("div");
-  taskButtonDiv.setAttribute("id", "taskButtonDiv");
+  taskButtonDiv.setAttribute("class", "taskButtonDiv");
   taskDiv.appendChild(taskButtonDiv);
 
   const btnDone = document.createElement("button");
+  btnDone.setAttribute("class", "btnDone");
   btnDone.textContent = "Done";
   taskButtonDiv.appendChild(btnDone);
 
   const btnMore = document.createElement("button");
+  btnMore.setAttribute("class", "btnDetails");
   btnMore.textContent = "Details";
   taskButtonDiv.appendChild(btnMore);
 
   const taskText = document.createElement("p");
   taskText.textContent = task.text;
 
+  const taskTextLabel = document.createElement("h5");
+  taskTextLabel.textContent = "Details";
+
   let openclosed = 0;
 
   btnMore.addEventListener("click", () => {
     if (openclosed == 0) {
+      taskDiv.appendChild(taskTextLabel);
       taskDiv.appendChild(taskText);
 
       openclosed = 1;
     } else {
+      taskDiv.removeChild(taskTextLabel);
       taskDiv.removeChild(taskText);
 
       openclosed = 0;
@@ -199,13 +236,12 @@ function showHighPriority(task) {
   });
 
   btnDone.addEventListener("click", () => {
-    let taskIndex = myProjects.indexOf(task);
-    console.log(taskIndex);
-
+    taskIndex.splice(0, 1, myProjects[projectIndex].taskHigh.indexOf(task));
+    taskHighDone();
     clearTaskBoard();
-    eachProject.taskHigh.map(showHighPriority);
-    eachProject.taskMedium.map(showMediumPriority);
-    eachProject.taskLow.map(showLowPriority);
+    myProjects[projectIndex].taskHigh.map(showHighPriority);
+    myProjects[projectIndex].taskMedium.map(showMediumPriority);
+    myProjects[projectIndex].taskLow.map(showLowPriority);
   });
 }
 
@@ -213,6 +249,7 @@ function showMediumPriority(task) {
   const mediumPriority = document.querySelector("#mediumPriority");
 
   const taskDiv = document.createElement("div");
+  taskDiv.setAttribute("class", "taskDiv");
   mediumPriority.appendChild(taskDiv);
 
   const taskName = document.createElement("h3");
@@ -220,22 +257,61 @@ function showMediumPriority(task) {
   taskDiv.appendChild(taskName);
 
   const taskDate = document.createElement("h3");
-  taskDate.textContent = task.date;
+  taskDate.textContent = "Due date - " + task.date;
   taskDiv.appendChild(taskDate);
 
-  const taskText = document.createElement("h3");
-  taskText.textContent = task.text;
-  taskDiv.appendChild(tasktext);
+  const taskButtonDiv = document.createElement("div");
+  taskButtonDiv.setAttribute("class", "taskButtonDiv");
+  taskDiv.appendChild(taskButtonDiv);
 
-  const taskPriority = document.createElement("h3");
-  taskPriority.textContent = task.priority;
-  taskDiv.appendChild(taskPriority);
+  const btnDone = document.createElement("button");
+  btnDone.setAttribute("class", "btnDone");
+  btnDone.textContent = "Done";
+  taskButtonDiv.appendChild(btnDone);
+
+  const btnMore = document.createElement("button");
+  btnMore.setAttribute("class", "btnDetails");
+  btnMore.textContent = "Details";
+  taskButtonDiv.appendChild(btnMore);
+
+  const taskText = document.createElement("p");
+  taskText.textContent = task.text;
+
+  const taskTextLabel = document.createElement("h5");
+  taskTextLabel.textContent = "Details";
+
+  let openclosed = 0;
+
+  btnMore.addEventListener("click", () => {
+    if (openclosed == 0) {
+      taskDiv.appendChild(taskTextLabel);
+      taskDiv.appendChild(taskText);
+
+      openclosed = 1;
+    } else {
+      taskDiv.removeChild(taskTextLabel);
+      taskDiv.removeChild(taskText);
+
+      openclosed = 0;
+    }
+  });
+
+  btnDone.addEventListener("click", () => {
+    taskIndex.splice(0, 1, myProjects[projectIndex].taskMedium.indexOf(task));
+
+    taskMediumDone();
+    clearTaskBoard();
+    myProjects[projectIndex].taskHigh.map(showHighPriority);
+    myProjects[projectIndex].taskMedium.map(showMediumPriority);
+    myProjects[projectIndex].taskLow.map(showLowPriority);
+  });
 }
 
 function showLowPriority(task) {
   const lowPriority = document.querySelector("#lowPriority");
 
   const taskDiv = document.createElement("div");
+  taskDiv.setAttribute("class", "taskDiv");
   lowPriority.appendChild(taskDiv);
 
   const taskName = document.createElement("h3");
@@ -243,16 +319,53 @@ function showLowPriority(task) {
   taskDiv.appendChild(taskName);
 
   const taskDate = document.createElement("h3");
-  taskDate.textContent = task.date;
+  taskDate.textContent = "Due date - " + task.date;
   taskDiv.appendChild(taskDate);
 
-  const taskText = document.createElement("h3");
-  taskText.textContent = task.text;
-  taskDiv.appendChild(tasktext);
+  const taskButtonDiv = document.createElement("div");
+  taskButtonDiv.setAttribute("class", "taskButtonDiv");
+  taskDiv.appendChild(taskButtonDiv);
 
-  const taskPriority = document.createElement("h3");
-  taskPriority.textContent = task.priority;
-  taskDiv.appendChild(taskPriority);
+  const btnDone = document.createElement("button");
+  btnDone.setAttribute("class", "btnDone");
+  btnDone.textContent = "Done";
+  taskButtonDiv.appendChild(btnDone);
+
+  const btnMore = document.createElement("button");
+  btnMore.setAttribute("class", "btnDetails");
+  btnMore.textContent = "Details";
+  taskButtonDiv.appendChild(btnMore);
+
+  const taskText = document.createElement("p");
+  taskText.textContent = task.text;
+
+  const taskTextLabel = document.createElement("h5");
+  taskTextLabel.textContent = "Details";
+
+  let openclosed = 0;
+
+  btnMore.addEventListener("click", () => {
+    if (openclosed == 0) {
+      taskDiv.appendChild(taskTextLabel);
+      taskDiv.appendChild(taskText);
+
+      openclosed = 1;
+    } else {
+      taskDiv.removeChild(taskTextLabel);
+      taskDiv.removeChild(taskText);
+
+      openclosed = 0;
+    }
+  });
+
+  btnDone.addEventListener("click", () => {
+    taskIndex.splice(0, 1, myProjects[projectIndex].taskLow.indexOf(task));
+    taskLowDone();
+    clearTaskBoard();
+    myProjects[projectIndex].taskHigh.map(showHighPriority);
+    myProjects[projectIndex].taskMedium.map(showMediumPriority);
+    myProjects[projectIndex].taskLow.map(showLowPriority);
+  });
 }
 
 function clearTaskBoard() {
