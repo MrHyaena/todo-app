@@ -110,8 +110,6 @@ export function taskLowDone() {
 }
 // Test data
 
-createTestData();
-
 function createTestData() {
   let project1 = new project("my first project", 1);
 
@@ -159,8 +157,6 @@ function createTestData() {
 // --------------------------------------------
 // --------------------------------------------
 // --------------------------------------------
-
-setState();
 getState();
 
 export function setState() {
