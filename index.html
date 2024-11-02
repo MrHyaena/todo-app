@@ -9,15 +9,26 @@
     <header>
       <h1 id="siteLogo">TooDoo</h1>
       <div id="stats">
-        <p>Total projects: 5</p>
-        <p>Total tasks: 20</p>
+        <p id="totalProjects"></p>
+        <p id="totalTasks"></p>
       </div>
     </header>
     <div id="projectBar">
       <button id="btnCreateProject">Create New Project</button>
+      <button id="allTasks">Show all tasks</button>
       <div id="projectsFormDiv"></div>
       <div id="projects"></div>
     </div>
-    <div id="board"></div>
+    <div id="addConsole">
+      <button id="addTask">+</button>
+      <div id="formDiv"></div>
+    </div>
+    <h2 id="projectNameheader"></h2>
+    <div id="board">
+      <div id="highPriority"></div>
+      <div id="mediumPriority"></div>
+
+      <div id="lowPriority"></div>
+    </div>
   </body>
 </html>
